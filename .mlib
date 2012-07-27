@@ -1,0 +1,7 @@
+<mlib bin="package">
+	<resources>
+		<resource type="src" path="src" dest="" />
+		<resource path="doc/haxedoc.xml" dest="haxedoc.xml" />
+		<resource type="license" path="resource/license.mtt" />
+	</resources>
+</mlib>
