@@ -1,3 +1,7 @@
+# Build files
 /build
 /report
 /package
+
+# Editor files
+*.sublime-*
