@@ -11,21 +11,27 @@
 
 class Random
 {
+	static function main() { }
+
+	/** Return a random boolean value (true or false) */
 	public static inline function bool():Bool
 	{
 		return Math.random() < 0.5;
 	}
 
+	/** Return a random integer between 'from' and 'to', inclusive. */
 	public static inline function int(from:Int, to:Int):Int
 	{
 		return from + Math.floor(((to - from) * Math.random()));
 	}
 
+	/** Return a random float between 'from' and 'to', inclusive. */
 	public static inline function float(from:Float, to:Float):Float
 	{
 		return from + ((to - from) * Math.random());
 	}
 
+	/** Return a random item from an array.  Will return null if the array is null or empty. */
 	public static inline function fromArray<T>(arr:Array<T>):Null<T>
 	{
 		return (arr != null && arr.length > 0) ? arr[int(0, arr.length - 1)] : null;
