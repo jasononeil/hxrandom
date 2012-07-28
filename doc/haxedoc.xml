@@ -1,44 +1,142 @@
 <haxe>
-	<class path="Array" params="T" file="/usr/share/haxe/std/Array.hx" extern="1">
-		<iterator public="1" set="method">
-			<f a=""><t path="Iterator"><c path="Array.T"/></t></f>
-			<haxe_doc>Returns an iterator of the Array values.</haxe_doc>
-		</iterator>
-		<copy public="1" set="method">
-			<f a=""><c path="Array"><c path="Array.T"/></c></f>
-			<haxe_doc>Returns a copy of the Array. The values are not
-		copied, only the Array structure.</haxe_doc>
-		</copy>
-		<remove public="1" set="method">
-			<f a="x">
-				<c path="Array.T"/>
-				<e path="Bool"/>
-			</f>
-			<haxe_doc>Removes the first occurence of [x].
-		Returns false if [x] was not present.
-		Elements are compared by using standard equality.</haxe_doc>
-		</remove>
-		<insert public="1" set="method">
-			<f a="pos:x">
+	<class path="neko.Lib" params="" file="/usr/share/haxe/std/neko/Lib.hx">
+		<load public="1" set="method" line="32" static="1">
+			<f a="lib:prim:nargs">
+				<c path="String"/>
+				<c path="String"/>
 				<c path="Int"/>
-				<c path="Array.T"/>
+				<d/>
+			</f>
+			<haxe_doc>Load and return a Neko primitive from a NDLL library.</haxe_doc>
+		</load>
+		<loadLazy public="1" set="method" line="36" static="1"><f a="lib:prim:nargs">
+	<c path="String"/>
+	<c path="String"/>
+	<c path="Int"/>
+	<d/>
+</f></loadLazy>
+		<print public="1" set="method" line="47" static="1">
+			<f a="v">
+				<d/>
 				<e path="Void"/>
 			</f>
-			<haxe_doc>Inserts the element [x] at the position [pos].
-		All elements after [pos] are moved one index ahead.</haxe_doc>
-		</insert>
-		<unshift public="1" set="method">
-			<f a="x">
-				<c path="Array.T"/>
+			<haxe_doc>Print the specified value on the default output.</haxe_doc>
+		</print>
+		<println public="1" set="method" line="54" static="1">
+			<f a="v">
+				<d/>
 				<e path="Void"/>
 			</f>
-			<haxe_doc>Adds the element [x] at the start of the array.</haxe_doc>
-		</unshift>
-		<toString public="1" set="method">
-			<f a=""><c path="String"/></f>
-			<haxe_doc>Returns a displayable representation of the Array content.</haxe_doc>
-		</toString>
-		<splice public="1" set="method">
+			<haxe_doc>Print the specified value on the default output followed by a newline character.</haxe_doc>
+		</println>
+		<rethrow public="1" set="method" line="62" static="1">
+			<f a="e">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>Rethrow an exception. This is useful when manually filtering an exception in order
+		to keep the previous exception stack.</haxe_doc>
+		</rethrow>
+		<serialize public="1" set="method" line="70" static="1">
+			<f a="v">
+				<d/>
+				<c path="haxe.io.Bytes"/>
+			</f>
+			<haxe_doc>Serialize using native Neko serialization. This will return a Binary string that can be
+		stored for long term usage. The serialized data is optimized for speed and not for size.</haxe_doc>
+		</serialize>
+		<unserialize public="1" set="method" line="77" static="1">
+			<f a="s">
+				<c path="haxe.io.Bytes"/>
+				<d/>
+			</f>
+			<haxe_doc>Unserialize a string using native Neko serialization. See [serialize].</haxe_doc>
+		</unserialize>
+		<localUnserialize public="1" set="method" line="88" static="1">
+			<f a="s">
+				<c path="haxe.io.Bytes"/>
+				<d/>
+			</f>
+			<haxe_doc>Unserialize a string using native Neko serialization. See [serialize].
+		This function assume that all the serialized data was serialized with current
+		module, even if the module name was different. This can happen if you are unserializing
+		some data into mod_neko that was serialized on a different server using a different
+		file path.</haxe_doc>
+		</localUnserialize>
+		<nekoToHaxe public="1" set="method" line="98" static="1">
+			<f a="v">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>Converts a Neko value to its haXe equivalent. Used for wrapping String and Arrays raw values into haXe Objects.</haxe_doc>
+		</nekoToHaxe>
+		<haxeToNeko public="1" set="method" line="130" static="1">
+			<f a="v">
+				<d/>
+				<d/>
+			</f>
+			<haxe_doc>Converts a Neko value to its haXe equivalent. Used to unwrap String and Arrays Objects into raw Neko values.</haxe_doc>
+		</haxeToNeko>
+		<getClasses public="1" set="method" line="165" static="1">
+			<f a=""><d/></f>
+			<haxe_doc>Returns an object containing all compiled packages and classes.</haxe_doc>
+		</getClasses>
+		<stringReference public="1" get="inline" set="null" line="172" static="1">
+			<f a="b">
+				<c path="haxe.io.Bytes"/>
+				<c path="String"/>
+			</f>
+			<haxe_doc>Returns a string referencing the data contains in bytes.</haxe_doc>
+		</stringReference>
+		<bytesReference public="1" get="inline" set="null" line="179" static="1">
+			<f a="s">
+				<c path="String"/>
+				<c path="haxe.io.Bytes"/>
+			</f>
+			<haxe_doc>Returns bytes referencing the content of a string.</haxe_doc>
+		</bytesReference>
+		<__serialize line="183" static="1"><f a="">
+	<d/>
+	<t path="haxe.io.BytesData"/>
+</f></__serialize>
+		<__unserialize line="184" static="1"><f a=":">
+	<t path="haxe.io.BytesData"/>
+	<a>
+		<loadprim><f a="p:n">
+	<unknown/>
+	<unknown/>
+	<unknown/>
+</f></loadprim>
+		<loadmodule><f a="m:l">
+	<unknown/>
+	<unknown/>
+	<unknown/>
+</f></loadmodule>
+	</a>
+	<unknown/>
+</f></__unserialize>
+	</class>
+	<class path="Array" params="T" file="/usr/share/haxe/std/neko/_std/Array.hx">
+		<new1 params="T" set="method" line="36" static="1"><f a="a:l">
+	<c path="neko.NativeArray"><c path="new1.T"/></c>
+	<c path="Int"/>
+	<c path="Array"><c path="new1.T"/></c>
+</f></new1>
+		<__neko set="method" line="280"><f a=""><c path="neko.NativeArray"><c path="Array.T"/></c></f></__neko>
+		<__double set="method" line="265"><f a="l">
+	<c path="Int"/>
+	<e path="Void"/>
+</f></__double>
+		<__set set="method" line="250"><f a="pos:v">
+	<c path="Int"/>
+	<c path="Array.T"/>
+	<c path="Array.T"/>
+</f></__set>
+		<__get set="method" line="246"><f a="pos">
+	<c path="Int"/>
+	<c path="Array.T"/>
+</f></__get>
+		<splice public="1" set="method" line="219">
 			<f a="pos:len">
 				<c path="Int"/>
 				<c path="Int"/>
@@ -46,7 +144,7 @@
 			</f>
 			<haxe_doc>Removes [len] elements starting from [pos] an returns them.</haxe_doc>
 		</splice>
-		<sort public="1" set="method">
+		<sort public="1" set="method" line="196">
 			<f a="f">
 				<f a=":">
 					<c path="Array.T"/>
@@ -59,7 +157,7 @@
 		[f(x,y)] should return [0] if [x == y], [>0] if [x > y]
 		and [<0] if [x < y].]]></haxe_doc>
 		</sort>
-		<slice public="1" set="method">
+		<slice public="1" set="method" line="179">
 			<f a="pos:?end">
 				<c path="Int"/>
 				<c path="Int"/>
@@ -70,33 +168,71 @@
 		negative to count from the end: -1 is the last item in
 		the array.</haxe_doc>
 		</slice>
-		<shift public="1" set="method">
+		<shift public="1" set="method" line="166">
 			<f a=""><t path="Null"><c path="Array.T"/></t></f>
 			<haxe_doc>Removes the first element and returns it.</haxe_doc>
 		</shift>
-		<reverse public="1" set="method">
+		<reverse public="1" set="method" line="152">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>Reverse the order of elements of the Array.</haxe_doc>
 		</reverse>
-		<push public="1" set="method">
+		<remove public="1" set="method" line="135">
+			<f a="x">
+				<c path="Array.T"/>
+				<e path="Bool"/>
+			</f>
+			<haxe_doc>Removes the first occurence of [x].
+		Returns false if [x] was not present.
+		Elements are compared by using standard equality.</haxe_doc>
+		</remove>
+		<unshift public="1" set="method" line="127">
+			<f a="x">
+				<c path="Array.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>Adds the element [x] at the start of the array.</haxe_doc>
+		</unshift>
+		<push public="1" set="method" line="120">
 			<f a="x">
 				<c path="Array.T"/>
 				<c path="Int"/>
 			</f>
 			<haxe_doc>Adds the element [x] at the end of the array.</haxe_doc>
 		</push>
-		<pop public="1" set="method">
+		<pop public="1" set="method" line="111">
 			<f a=""><t path="Null"><c path="Array.T"/></t></f>
 			<haxe_doc>Removes the last element of the array and returns it.</haxe_doc>
 		</pop>
-		<join public="1" set="method">
+		<toString public="1" set="method" line="98">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>Returns a displayable representation of the Array content.</haxe_doc>
+		</toString>
+		<join public="1" set="method" line="86">
 			<f a="sep">
 				<c path="String"/>
 				<c path="String"/>
 			</f>
 			<haxe_doc>Returns a representation of an array with [sep] for separating each element.</haxe_doc>
 		</join>
-		<concat public="1" set="method">
+		<insert public="1" set="method" line="73">
+			<f a="pos:x">
+				<c path="Int"/>
+				<c path="Array.T"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>Inserts the element [x] at the position [pos].
+		All elements after [pos] are moved one index ahead.</haxe_doc>
+		</insert>
+		<iterator public="1" set="method" line="58">
+			<f a=""><t path="Iterator"><c path="Array.T"/></t></f>
+			<haxe_doc>Returns an iterator of the Array values.</haxe_doc>
+		</iterator>
+		<copy public="1" set="method" line="54">
+			<f a=""><c path="Array"><c path="Array.T"/></c></f>
+			<haxe_doc>Returns a copy of the Array. The values are not
+		copied, only the Array structure.</haxe_doc>
+		</copy>
+		<concat public="1" set="method" line="43">
 			<f a="a">
 				<c path="Array"><c path="Array.T"/></c>
 				<c path="Array"><c path="Array.T"/></c>
@@ -107,109 +243,154 @@
 			<c path="Int"/>
 			<haxe_doc>The length of the Array</haxe_doc>
 		</length>
-		<new public="1" set="method">
+		<__a><c path="neko.NativeArray"><c path="Array.T"/></c></__a>
+		<new public="1" set="method" line="31">
 			<f a=""><e path="Void"/></f>
 			<haxe_doc>Creates a new Array.</haxe_doc>
 		</new>
 		<haxe_doc>An Array is a storage for values. You can access it using indexes or
 	with its API. On the server side, it's often better to use a [List] which
 	is less memory and CPU consuming, unless you really need indexed access.</haxe_doc>
+		<meta>
+			<m n=":core_api"/>
+			<m n=":final"/>
+		</meta>
 	</class>
-	<class path="Math" params="" file="/usr/share/haxe/std/Math.hx" extern="1">
+	<class path="Class" params="T" file="/usr/share/haxe/std/Class.hx" extern="1"><haxe_doc>An abstract type that represents a Class.
+	See [Type] for the haXe Reflection API.</haxe_doc></class>
+	<class path="Enum" params="T" file="/usr/share/haxe/std/Enum.hx" extern="1"><haxe_doc>An abstract type that represents an Enum.
+	See [Type] for the haXe Reflection API.</haxe_doc></class>
+	<class path="IntIter" params="" file="/usr/share/haxe/std/IntIter.hx">
+		<next public="1" set="method" line="53">
+			<f a=""><c path="Int"/></f>
+			<haxe_doc>Moves to the next item of the iterator.</haxe_doc>
+		</next>
+		<hasNext public="1" set="method" line="46">
+			<f a=""><e path="Bool"/></f>
+			<haxe_doc>Returns true if the iterator has other items, false otherwise.</haxe_doc>
+		</hasNext>
+		<max><c path="Int"/></max>
+		<min><c path="Int"/></min>
+		<new public="1" set="method" line="38">
+			<f a="min:max">
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc><![CDATA[Iterate from [min] (inclusive) to [max] (exclusive).
+		If [max <= min], the iterator will not act as a countdown.]]></haxe_doc>
+		</new>
+		<haxe_doc>Integer iterator. Used for interval implementation.</haxe_doc>
+	</class>
+	<class path="Math" params="" file="/usr/share/haxe/std/neko/_std/Math.hx">
 		<PI public="1" set="null" static="1"><c path="Float"/></PI>
 		<NaN public="1" set="null" static="1"><c path="Float"/></NaN>
-		<NEGATIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></NEGATIVE_INFINITY>
 		<POSITIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></POSITIVE_INFINITY>
-		<abs public="1" set="method" static="1"><f a="v">
-	<c path="Float"/>
-	<c path="Float"/>
-</f></abs>
-		<min public="1" set="method" static="1"><f a="a:b">
+		<NEGATIVE_INFINITY public="1" set="null" static="1"><c path="Float"/></NEGATIVE_INFINITY>
+		<min public="1" set="method" line="34" static="1"><f a="a:b">
 	<c path="Float"/>
 	<c path="Float"/>
 	<c path="Float"/>
 </f></min>
-		<max public="1" set="method" static="1"><f a="a:b">
+		<max public="1" set="method" line="35" static="1"><f a="a:b">
 	<c path="Float"/>
 	<c path="Float"/>
 	<c path="Float"/>
 </f></max>
-		<sin public="1" set="method" static="1"><f a="v">
+		<abs public="1" set="method" line="37" static="1"><f a="v">
+	<c path="Float"/>
+	<c path="Float"/>
+</f></abs>
+		<sin public="1" set="method" line="38" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></sin>
-		<cos public="1" set="method" static="1"><f a="v">
+		<cos public="1" set="method" line="39" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></cos>
-		<atan2 public="1" set="method" static="1"><f a="y:x">
+		<atan2 public="1" set="method" line="40" static="1"><f a="y:x">
 	<c path="Float"/>
 	<c path="Float"/>
 	<c path="Float"/>
 </f></atan2>
-		<tan public="1" set="method" static="1"><f a="v">
+		<tan public="1" set="method" line="41" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></tan>
-		<exp public="1" set="method" static="1"><f a="v">
+		<exp public="1" set="method" line="42" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></exp>
-		<log public="1" set="method" static="1"><f a="v">
+		<log public="1" set="method" line="43" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></log>
-		<sqrt public="1" set="method" static="1"><f a="v">
+		<sqrt public="1" set="method" line="44" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></sqrt>
-		<round public="1" set="method" static="1"><f a="v">
+		<round public="1" set="method" line="45" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Int"/>
 </f></round>
-		<floor public="1" set="method" static="1"><f a="v">
+		<floor public="1" set="method" line="46" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Int"/>
 </f></floor>
-		<ceil public="1" set="method" static="1"><f a="v">
+		<ceil public="1" set="method" line="47" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Int"/>
 </f></ceil>
-		<atan public="1" set="method" static="1"><f a="v">
+		<atan public="1" set="method" line="48" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></atan>
-		<asin public="1" set="method" static="1"><f a="v">
+		<asin public="1" set="method" line="49" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></asin>
-		<acos public="1" set="method" static="1"><f a="v">
+		<acos public="1" set="method" line="50" static="1"><f a="v">
 	<c path="Float"/>
 	<c path="Float"/>
 </f></acos>
-		<pow public="1" set="method" static="1"><f a="v:exp">
+		<pow public="1" set="method" line="51" static="1"><f a="v:exp">
 	<c path="Float"/>
 	<c path="Float"/>
 	<c path="Float"/>
 </f></pow>
-		<random public="1" set="method" static="1"><f a=""><c path="Float"/></f></random>
-		<isFinite public="1" set="method" static="1"><f a="f">
+		<__rnd static="1"><unknown/></__rnd>
+		<_rand_float line="54" static="1"><f a="">
+	<unknown/>
 	<c path="Float"/>
-	<e path="Bool"/>
-</f></isFinite>
-		<isNaN public="1" set="method" static="1"><f a="f">
+</f></_rand_float>
+		<_rand_int line="55" static="1"><f a=":">
+	<unknown/>
+	<c path="Int"/>
+	<unknown/>
+</f></_rand_int>
+		<random public="1" set="method" line="57" static="1"><f a=""><c path="Float"/></f></random>
+		<isNaN public="1" set="method" line="59" static="1"><f a="f">
 	<c path="Float"/>
 	<e path="Bool"/>
 </f></isNaN>
+		<isFinite public="1" set="method" line="60" static="1"><f a="f">
+	<c path="Float"/>
+	<e path="Bool"/>
+</f></isFinite>
 		<haxe_doc>This class defines mathematical functions and constants.</haxe_doc>
+		<meta>
+			<m n=":core_api"/>
+			<m n=":final"/>
+		</meta>
 	</class>
 	<class path="Random" params="" file="src/Random.hx">
 		<main set="method" line="14" static="1"><f a=""><e path="Void"/></f></main>
-		<bool public="1" get="inline" set="null" line="17" static="1">
+		<bool public="1" get="inline" set="null" line="47" static="1">
 			<f a=""><e path="Bool"/></f>
 			<haxe_doc>Return a random boolean value (true or false)</haxe_doc>
 		</bool>
-		<int public="1" get="inline" set="null" line="23" static="1">
+		<int public="1" get="inline" set="null" line="53" static="1">
 			<f a="from:to">
 				<c path="Int"/>
 				<c path="Int"/>
@@ -217,7 +398,7 @@
 			</f>
 			<haxe_doc>Return a random integer between 'from' and 'to', inclusive.</haxe_doc>
 		</int>
-		<float public="1" get="inline" set="null" line="29" static="1">
+		<float public="1" get="inline" set="null" line="59" static="1">
 			<f a="from:to">
 				<c path="Float"/>
 				<c path="Float"/>
@@ -225,7 +406,7 @@
 			</f>
 			<haxe_doc>Return a random float between 'from' and 'to', inclusive.</haxe_doc>
 		</float>
-		<fromArray public="1" params="T" get="inline" set="null" line="35" static="1">
+		<fromArray public="1" params="T" get="inline" set="null" line="65" static="1">
 			<f a="arr">
 				<c path="Array"><c path="fromArray.T"/></c>
 				<t path="Null"><c path="fromArray.T"/></t>
@@ -243,44 +424,103 @@
 * 
 **</haxe_doc>
 	</class>
-	<class path="Std" params="" file="/usr/share/haxe/std/Std.hx" extern="1">
-		<is public="1" set="method" static="1">
+	<class path="Float" params="" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>The standard Float type, this is a double-precision IEEE 64bit float.</haxe_doc></class>
+	<class path="Int" params="" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes" extern="1">
+		<extends path="Float"/>
+		<haxe_doc>The standard Int type. Its precision depends on the platform.</haxe_doc>
+	</class>
+	<enum path="Bool" params="" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes">
+		<true/>
+		<false/>
+		<haxe_doc>The standard Boolean type is represented as an enum with two choices.</haxe_doc>
+	</enum>
+	<class path="Dynamic" params="T" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>Dynamic is an internal compiler type which has special behavior.
+	See the haXe language reference for more informations.</haxe_doc></class>
+	<enum path="Void" params="" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes"><haxe_doc>The standard Void type. Only [null] values can be of the type [Void].</haxe_doc></enum>
+	<class path="neko.Boot" params="" file="/usr/share/haxe/std/neko/Boot.hx">
+		<__tmp_str set="method" line="30" static="1"><f a=""><c path="String"/></f></__tmp_str>
+		<__enum_str set="method" line="34" static="1"><f a="e">
+	<d/>
+	<c path="String"/>
+</f></__enum_str>
+		<__interfLoop set="method" line="56" static="1"><f a="cc:cl">
+	<d/>
+	<d/>
+	<e path="Bool"/>
+</f></__interfLoop>
+		<__instanceof set="method" line="72" static="1">
+			<f a="o:cl">
+				<a>
+					<__name__ set="null"><unknown/></__name__>
+					<__enum__ set="null"><t path="#Dynamic"/></__enum__>
+					<__ename__ set="null"><unknown/></__ename__>
+					<__class__ set="null"><unknown/></__class__>
+				</a>
+				<t path="#Dynamic"/>
+				<e path="Bool"/>
+			</f>
+			<meta><m n=":feature"><e>typed_catch</e></m></meta>
+		</__instanceof>
+		<__serialize set="method" line="90" static="1"><f a="o">
+	<a>
+		<__enum__ set="null"><a><__ename__ set="null"><a><length set="null"><c path="Int"/></length></a></__ename__></a></__enum__>
+		<__class__ set="null"><a><__name__ set="null"><a><length set="null"><c path="Int"/></length></a></__name__></a></__class__>
+	</a>
+	<c path="Array"><unknown/></c>
+</f></__serialize>
+		<__tagserialize set="method" line="110" static="1"><f a="o">
+	<a>
+		<tag set="null"><unknown/></tag>
+		<__enum__ set="null"><a><__ename__ set="null"><a><length set="null"><c path="Int"/></length></a></__ename__></a></__enum__>
+	</a>
+	<c path="Array"><unknown/></c>
+</f></__tagserialize>
+		<__unserialize set="method" line="119" static="1"><f a="v">
+	<c path="Array"><unknown/></c>
+	<unknown/>
+</f></__unserialize>
+		<__init set="method" line="142" static="1"><f a=""><e path="Void"/></f></__init>
+		<meta><m n=":keep"/></meta>
+	</class>
+	<class path="Std" params="" file="/usr/share/haxe/std/neko/_std/Std.hx">
+		<is public="1" set="method" line="29" static="1">
 			<f a="v:t">
 				<d/>
 				<d/>
 				<e path="Bool"/>
 			</f>
+			<meta><m n=":feature"><e>typed_cast</e></m></meta>
 			<haxe_doc>Tells if a value v is of the type t.</haxe_doc>
 		</is>
-		<string public="1" set="method" static="1">
+		<string public="1" set="method" line="33" static="1">
 			<f a="s">
 				<d/>
 				<c path="String"/>
 			</f>
 			<haxe_doc>Convert any value to a String</haxe_doc>
 		</string>
-		<int public="1" set="method" static="1">
+		<int public="1" set="method" line="37" static="1">
 			<f a="x">
 				<c path="Float"/>
 				<c path="Int"/>
 			</f>
 			<haxe_doc>Convert a Float to an Int, rounded down.</haxe_doc>
 		</int>
-		<parseInt public="1" set="method" static="1">
+		<parseInt public="1" set="method" line="42" static="1">
 			<f a="x">
 				<c path="String"/>
 				<t path="Null"><c path="Int"/></t>
 			</f>
 			<haxe_doc>Convert a String to an Int, parsing different possible representations. Returns [null] if could not be parsed.</haxe_doc>
 		</parseInt>
-		<parseFloat public="1" set="method" static="1">
+		<parseFloat public="1" set="method" line="53" static="1">
 			<f a="x">
 				<c path="String"/>
 				<c path="Float"/>
 			</f>
 			<haxe_doc>Convert a String to a Float, parsing different possible reprensations.</haxe_doc>
 		</parseFloat>
-		<random public="1" set="method" static="1">
+		<random public="1" set="method" line="60" static="1">
 			<f a="x">
 				<c path="Int"/>
 				<c path="Int"/>
@@ -288,12 +528,7 @@
 			<haxe_doc>Return a random integer between 0 included and x excluded.</haxe_doc>
 		</random>
 		<haxe_doc>The Std class provides standard methods for manipulating basic types.</haxe_doc>
-	</class>
-	<enum path="Void" params="" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes"><haxe_doc>The standard Void type. Only [null] values can be of the type [Void].</haxe_doc></enum>
-	<class path="Float" params="" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>The standard Float type, this is a double-precision IEEE 64bit float.</haxe_doc></class>
-	<class path="Int" params="" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes" extern="1">
-		<extends path="Float"/>
-		<haxe_doc>The standard Int type. Its precision depends on the platform.</haxe_doc>
+		<meta><m n=":core_api"/></meta>
 	</class>
 	<typedef path="Null" params="T" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes">
 		<c path="Null.T"/>
@@ -302,13 +537,6 @@
 	generator to distinguish between base values that can be null and others that
 	can't.</haxe_doc>
 	</typedef>
-	<enum path="Bool" params="" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes">
-		<true/>
-		<false/>
-		<haxe_doc>The standard Boolean type is represented as an enum with two choices.</haxe_doc>
-	</enum>
-	<class path="Dynamic" params="T" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes" extern="1"><haxe_doc>Dynamic is an internal compiler type which has special behavior.
-	See the haXe language reference for more informations.</haxe_doc></class>
 	<typedef path="Iterator" params="T" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes">
 		<a>
 			<next set="method"><f a=""><c path="Iterator.T"/></f></next>
@@ -325,16 +553,38 @@
 	</typedef>
 	<class path="ArrayAccess" params="T" file="/usr/share/haxe/std/StdTypes.hx" module="StdTypes" extern="1" interface="1"><haxe_doc>ArrayAccess is used to indicate a class that can be accessed using brackets.
 	The type parameter represent the type of the elements stored.</haxe_doc></class>
-	<class path="String" params="" file="/usr/share/haxe/std/String.hx" extern="1">
-		<fromCharCode public="1" set="method" static="1"><f a="code">
+	<class path="String" params="" file="/usr/share/haxe/std/neko/_std/String.hx">
+		<__is_String static="1"><e path="Bool"/></__is_String>
+		<__split line="29" static="1"><d/></__split>
+		<fromCharCode public="1" set="method" line="204" static="1"><f a="code">
 	<c path="Int"/>
 	<c path="String"/>
 </f></fromCharCode>
-		<toString public="1" set="method">
+		<__radd set="method" line="200"><f a="s">
+	<d/>
+	<c path="String"/>
+</f></__radd>
+		<__add set="method" line="196"><f a="s">
+	<d/>
+	<c path="String"/>
+</f></__add>
+		<__compare set="method" line="192"><f a="o">
+	<c path="String"/>
+	<c path="Int"/>
+</f></__compare>
+		<toString public="1" set="method" line="186">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>Returns the String itself.</haxe_doc>
 		</toString>
-		<substring public="1" set="method">
+		<toUpperCase public="1" set="method" line="170">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>Returns an String where all characters have been uppercased.</haxe_doc>
+		</toUpperCase>
+		<toLowerCase public="1" set="method" line="154">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>Returns an String where all characters have been lowercased.</haxe_doc>
+		</toLowerCase>
+		<substring public="1" set="method" line="130">
 			<f a="startIndex:?endIndex">
 				<c path="Int"/>
 				<c path="Int"/>
@@ -345,7 +595,7 @@
 		If [startIndex] or [endIndex] is smaller than 0, than 0 is used.
 		If [startIndex] > [endIndex] then they are swaped.]]></haxe_doc>
 		</substring>
-		<substr public="1" set="method">
+		<substr public="1" set="method" line="104">
 			<f a="pos:?len">
 				<c path="Int"/>
 				<c path="Int"/>
@@ -354,14 +604,14 @@
 			<haxe_doc>Returns a part of the String, taking [len] characters starting from [pos].
 		If [len] is not specified, it takes all the remaining characters.</haxe_doc>
 		</substr>
-		<split public="1" set="method">
+		<split public="1" set="method" line="88">
 			<f a="delimiter">
 				<c path="String"/>
 				<c path="Array"><c path="String"/></c>
 			</f>
 			<haxe_doc>Split the string using the specified delimiter.</haxe_doc>
 		</split>
-		<lastIndexOf public="1" set="method">
+		<lastIndexOf public="1" set="method" line="73">
 			<f a="str:?startIndex">
 				<c path="String"/>
 				<c path="Int"/>
@@ -369,7 +619,7 @@
 			</f>
 			<haxe_doc>Similar to [indexOf] but returns the latest index.</haxe_doc>
 		</lastIndexOf>
-		<indexOf public="1" set="method">
+		<indexOf public="1" set="method" line="64">
 			<f a="str:?startIndex">
 				<c path="String"/>
 				<c path="Int"/>
@@ -380,7 +630,7 @@
 		The optional [startIndex] parameter allows you to specify at which character to start searching.
 		The position returned is still relative to the beginning of the string.</haxe_doc>
 		</indexOf>
-		<charCodeAt public="1" set="method">
+		<charCodeAt public="1" set="method" line="58">
 			<f a="index">
 				<c path="Int"/>
 				<t path="Null"><c path="Int"/></t>
@@ -388,7 +638,7 @@
 			<haxe_doc>Returns the character code at the given position.
 		Returns [null] if outside of String bounds.</haxe_doc>
 		</charCodeAt>
-		<charAt public="1" set="method">
+		<charAt public="1" set="method" line="46">
 			<f a="index">
 				<c path="Int"/>
 				<c path="String"/>
@@ -396,19 +646,11 @@
 			<haxe_doc>Returns the character at the given position.
 		Returns the empty String if outside of String bounds.</haxe_doc>
 		</charAt>
-		<toLowerCase public="1" set="method">
-			<f a=""><c path="String"/></f>
-			<haxe_doc>Returns an String where all characters have been lowercased.</haxe_doc>
-		</toLowerCase>
-		<toUpperCase public="1" set="method">
-			<f a=""><c path="String"/></f>
-			<haxe_doc>Returns an String where all characters have been uppercased.</haxe_doc>
-		</toUpperCase>
 		<length public="1" set="null">
 			<c path="Int"/>
 			<haxe_doc>The number of characters in the String.</haxe_doc>
 		</length>
-		<new public="1" set="method">
+		<new public="1" set="method" line="37">
 			<f a="string">
 				<c path="String"/>
 				<e path="Void"/>
@@ -416,5 +658,167 @@
 			<haxe_doc>Creates a copy from a given String.</haxe_doc>
 		</new>
 		<haxe_doc>The basic String class.</haxe_doc>
+		<meta>
+			<m n=":core_api"/>
+			<m n=":final"/>
+		</meta>
+	</class>
+	<class path="StringBuf" params="" file="/usr/share/haxe/std/neko/_std/StringBuf.hx">
+		<__make line="50" static="1"><d/></__make>
+		<__add line="51" static="1"><d/></__add>
+		<__add_char line="52" static="1"><d/></__add_char>
+		<__add_sub line="53" static="1"><d/></__add_sub>
+		<__string line="54" static="1"><d/></__string>
+		<toString public="1" get="inline" set="null" line="46">
+			<f a=""><c path="String"/></f>
+			<haxe_doc>Returns the content of the string buffer.
+		The buffer is not emptied by this operation.</haxe_doc>
+		</toString>
+		<addChar public="1" get="inline" set="null" line="42">
+			<f a="c">
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>Adds a part of a string to the string buffer.</haxe_doc>
+		</addChar>
+		<addSub public="1" get="inline" set="null" line="38">
+			<f a="s:pos:?len">
+				<c path="String"/>
+				<c path="Int"/>
+				<c path="Int"/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>Adds a character to the string buffer.</haxe_doc>
+		</addSub>
+		<add public="1" get="inline" set="null" line="34">
+			<f a="x">
+				<d/>
+				<e path="Void"/>
+			</f>
+			<haxe_doc>Adds the representation of any value to the string buffer.</haxe_doc>
+		</add>
+		<b><d/></b>
+		<new public="1" set="method" line="30">
+			<f a=""><e path="Void"/></f>
+			<haxe_doc>Creates a new string buffer.</haxe_doc>
+		</new>
+		<haxe_doc>A String buffer is an efficient way to build a big string by
+	appending small elements together.</haxe_doc>
+		<meta><m n=":core_api"/></meta>
+	</class>
+	<class path="haxe.io.Bytes" params="" file="/usr/share/haxe/std/haxe/io/Bytes.hx">
+		<alloc public="1" set="method" line="259" static="1"><f a="length">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></alloc>
+		<ofString public="1" set="method" line="291" static="1"><f a="s">
+	<c path="String"/>
+	<c path="haxe.io.Bytes"/>
+</f></ofString>
+		<ofData public="1" set="method" line="340" static="1"><f a="b">
+	<t path="haxe.io.BytesData"/>
+	<c path="haxe.io.Bytes"/>
+</f></ofData>
+		<getData public="1" get="inline" set="null" line="255"><f a=""><t path="haxe.io.BytesData"/></f></getData>
+		<toHex public="1" set="method" line="241"><f a=""><c path="String"/></f></toHex>
+		<toString public="1" set="method" line="218"><f a=""><c path="String"/></f></toString>
+		<readString public="1" set="method" line="168"><f a="pos:len">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="String"/>
+</f></readString>
+		<compare public="1" set="method" line="130"><f a="other">
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+</f></compare>
+		<sub public="1" set="method" line="103"><f a="pos:len">
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+</f></sub>
+		<blit public="1" set="method" line="71"><f a="pos:src:srcpos:len">
+	<c path="Int"/>
+	<c path="haxe.io.Bytes"/>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></blit>
+		<set public="1" get="inline" set="null" line="53"><f a="pos:v">
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></set>
+		<get public="1" get="inline" set="null" line="37"><f a="pos">
+	<c path="Int"/>
+	<c path="Int"/>
+</f></get>
+		<b><t path="haxe.io.BytesData"/></b>
+		<length public="1" set="null"><c path="Int"/></length>
+		<new set="method" line="32"><f a="length:b">
+	<c path="Int"/>
+	<t path="haxe.io.BytesData"/>
+	<e path="Void"/>
+</f></new>
+	</class>
+	<typedef path="haxe.io.BytesData" params="" file="/usr/share/haxe/std/haxe/io/BytesData.hx"><c path="neko.NativeString"/></typedef>
+	<enum path="haxe.io.Error" params="" file="/usr/share/haxe/std/haxe/io/Error.hx">
+		<Overflow><haxe_doc>An integer value is outside its allowed range</haxe_doc></Overflow>
+		<OutsideBounds><haxe_doc>An operation on Bytes is outside of its valid range</haxe_doc></OutsideBounds>
+		<Custom a="e">
+			<d/>
+			<haxe_doc>Other errors</haxe_doc>
+		</Custom>
+		<Blocked><haxe_doc>The IO is set into nonblocking mode and some data cannot be read or written</haxe_doc></Blocked>
+		<haxe_doc>The possible IO errors that can occur</haxe_doc>
+	</enum>
+	<class path="neko.NativeArray" params="T" file="/usr/share/haxe/std/neko/NativeArray.hx">
+		<alloc public="1" params="T" get="inline" set="null" line="29" static="1"><f a="length">
+	<c path="Int"/>
+	<c path="neko.NativeArray"><c path="alloc.T"/></c>
+</f></alloc>
+		<blit public="1" params="T" get="inline" set="null" line="33" static="1"><f a="dst:dstPos:src:srcPos:length">
+	<c path="neko.NativeArray"><c path="blit.T"/></c>
+	<c path="Int"/>
+	<c path="neko.NativeArray"><c path="blit.T"/></c>
+	<c path="Int"/>
+	<c path="Int"/>
+	<e path="Void"/>
+</f></blit>
+		<ofArrayCopy public="1" params="T" get="inline" set="null" line="37" static="1"><f a="a">
+	<c path="Array"><c path="ofArrayCopy.T"/></c>
+	<c path="neko.NativeArray"><c path="ofArrayCopy.T"/></c>
+</f></ofArrayCopy>
+		<ofArrayRef public="1" params="T" get="inline" set="null" line="41" static="1"><f a="a">
+	<c path="Array"><c path="ofArrayRef.T"/></c>
+	<c path="neko.NativeArray"><c path="ofArrayRef.T"/></c>
+</f></ofArrayRef>
+		<sub public="1" params="T" get="inline" set="null" line="45" static="1"><f a="a:pos:len">
+	<c path="neko.NativeArray"><c path="sub.T"/></c>
+	<c path="Int"/>
+	<c path="Int"/>
+	<c path="neko.NativeArray"><c path="sub.T"/></c>
+</f></sub>
+		<toArray public="1" params="T" get="inline" set="null" line="49" static="1"><f a="a">
+	<c path="neko.NativeArray"><c path="toArray.T"/></c>
+	<c path="Array"><c path="toArray.T"/></c>
+</f></toArray>
+		<length public="1" get="inline" set="null" line="53" static="1"><f a="a">
+	<c path="neko.NativeArray"><d/></c>
+	<c path="Int"/>
+</f></length>
+	</class>
+	<class path="neko.NativeString" params="" file="/usr/share/haxe/std/neko/NativeString.hx">
+		<ofString public="1" get="inline" set="null" line="29" static="1"><f a="s">
+	<c path="String"/>
+	<c path="neko.NativeString"/>
+</f></ofString>
+		<toString public="1" get="inline" set="null" line="33" static="1"><f a="s">
+	<c path="neko.NativeString"/>
+	<c path="String"/>
+</f></toString>
+		<length public="1" get="inline" set="null" line="37" static="1"><f a="s">
+	<c path="neko.NativeString"/>
+	<c path="Int"/>
+</f></length>
 	</class>
 </haxe>

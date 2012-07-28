@@ -1,0 +1,6 @@
+# Documentation 
+
+-cp src
+-main Random
+-xml doc/haxedoc.xml
+-neko build/random.n
