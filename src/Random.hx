@@ -29,6 +29,18 @@ class Random
 		return from + ((to - from) * Math.random());
 	}
 
+	/** Return a random string of a certain length.  You can optionally specify 
+	    which characters to use, otherwise the default is (a-zA-Z0-9) */
+	public static function string(length:Int, ?charactersToUse = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"):String
+	{
+		var str = "";
+		for (i in 0...length)
+		{
+			str += charactersToUse.charAt(Random.int(0, charactersToUse.length - 1));
+		}
+		return str;
+	}
+
 	/** Return a random item from an array.  Will return null if the array is null or empty. */
 	public static inline function fromArray<T>(arr:Array<T>):Null<T>
 	{

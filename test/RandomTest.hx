@@ -146,6 +146,40 @@ class RandomTest
 	}
 
 	@Test
+	public function string():Void
+	{
+		#if !flash8
+			var re = ~/^[A-Za-z0-9]*$/;
+		#end 
+		for (i in 0...1000)
+		{
+			var r = Random.string(20);
+			Assert.isType(r, String);
+			Assert.areEqual(20, r.length);
+			#if !flash8 
+				Assert.isTrue(re.match(r));
+			#end
+		}
+	}
+
+	@Test
+	public function stringWithCustomRange():Void
+	{
+		#if !flash8
+			var re = ~/^[AB]*$/;
+		#end 
+		for (i in 0...1000)
+		{
+			var r = Random.string(20, "AB");
+			Assert.isType(r, String);
+			Assert.areEqual(20, r.length);
+			#if !flash8 
+				Assert.isTrue(re.match(r));
+			#end
+		}
+	}
+
+	@Test
 	public function arrayOfStrings():Void
 	{
 		var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
