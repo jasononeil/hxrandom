@@ -25,6 +25,8 @@ class Main
 		Random.int(1,3); // 1, 2, or 3
 		Random.float(0,5); // Any float between 0 and 5, inclusive
 		Random.bool(); // True or false
+		Random.string(5); // A 5 character string using letters A-Z, a-z and 0-9
+		Random.string(10, "aeiou"); // A 10 character string using only vowels
 		Random.fromArray(['dog','cat','mouse']); // "dog", "cat" or "mouse"
 	}
 }
@@ -38,6 +40,8 @@ The methods it provides:
    Will generate a random float between `from` and `to`, inclusive.
  * `Random.bool()`  
    Will return a random `true` or `false` boolean value.
+ * `Random.string(length:Int, ?charactersToUse:String)`  
+   Will return a random string using of a certain length, using characters from "charactersToUse" or else A-Za-z0-9
  * `Random.fromArray(arr)`  
    Will return a random item from the set array, or Null if the array is empty / null.
 
