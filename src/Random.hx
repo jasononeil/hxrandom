@@ -11,38 +11,6 @@
 
 class Random
 {
-	static function main() 
-	{
-		// var b1 = new StringBuf();
-		// for (i in 0...10)
-		// {
-		// 	b1.add(bool() + ", ");
-		// }
-		// trace (b1.toString());
-		
-		// var b2 = new StringBuf();
-		// for (i in 0...100)
-		// {
-		// 	b2.add(int(1,5) + ", ");
-		// }
-		// trace (b2.toString());
-		
-		// var b3 = new StringBuf();
-		// for (i in 0...10)
-		// {
-		// 	b3.add(float(-1,1) + "\n");
-		// }
-		// trace (b3.toString());
-		
-		// var b4 = new StringBuf();
-		// var arr = ["blue","red","green"];
-		// for (i in 0...100)
-		// {
-		// 	b4.add(fromArray(arr) + ", ");
-		// }
-		// trace (b4.toString());
-	}
-
 	/** Return a random boolean value (true or false) */
 	public static inline function bool():Bool
 	{
