@@ -42,7 +42,7 @@ class RandomTest
 		for (i in 0...1000)
 		{
 			var r = Random.int(5,10);
-			Assert.isType(r, Int);
+			Assert.isTrue(Std.is(r, Int));
 			Assert.isTrue(r > 4);
 			Assert.isTrue(r < 11);
 		}
@@ -54,7 +54,7 @@ class RandomTest
 		for (i in 0...1000)
 		{
 			var r = Random.int(-10,-5);
-			Assert.isType(r, Int);
+			Assert.isTrue(Std.is(r, Int));
 			Assert.isTrue(r > -11);
 			Assert.isTrue(r < -4);
 		}
@@ -66,7 +66,7 @@ class RandomTest
 		for (i in 0...1000)
 		{
 			var r = Random.int(-1,1);
-			Assert.isType(r, Int);
+			Assert.isTrue(Std.is(r, Int));
 			Assert.isTrue(r > -2);
 			Assert.isTrue(r < 2);
 		}
@@ -85,7 +85,7 @@ class RandomTest
 		for (i in 0...1000)
 		{
 			var r = Random.float(5,7);
-			Assert.isType(r, Float);
+			Assert.isTrue(Std.is(r, Float));
 			Assert.isTrue(r > 4.99999999999);
 			Assert.isTrue(r < 7.00000000001);
 		}
@@ -97,7 +97,7 @@ class RandomTest
 		for (i in 0...1000)
 		{
 			var r = Random.float(-10,-5);
-			Assert.isType(r, Float);
+			Assert.isTrue(Std.is(r, Float));
 			Assert.isTrue(r > -10.00000000000001);
 			Assert.isTrue(r < -4.99999999999999);
 		}
@@ -109,7 +109,7 @@ class RandomTest
 		for (i in 0...1000)
 		{
 			var r = Random.float(-1,1);
-			Assert.isType(r, Float);
+			Assert.isTrue(Std.is(r, Float));
 			Assert.isTrue(r > -1.0000000000001);
 			Assert.isTrue(r < 1.00000000000001);
 		}
@@ -121,7 +121,7 @@ class RandomTest
 		for (i in 0...1000)
 		{
 			var r = Random.float(-0.1,0.1);
-			Assert.isType(r, Float);
+			Assert.isTrue(Std.is(r, Float));
 			Assert.isTrue(r > -0.1000000000001);
 			Assert.isTrue(r < 0.10000000000001);
 		}
@@ -206,7 +206,7 @@ class RandomTest
 		for (i in 0...1000)
 		{
 			var r = Random.fromArray(days);
-			Assert.isType(r,Int);
+			Assert.isTrue(Std.is(r, Int));
 			Assert.isTrue(
 				r == 0
 				|| r == 1
