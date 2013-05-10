@@ -1,0 +1,13 @@
+{
+  "name": "random",
+  "license": "MIT",
+  "tags": [],
+  "description": "Shortcuts to generate random floats, ints, bools or pick random items from an array.",
+  "contributors": ["jason"],
+  "releasenote": "Added support for Random.string(length:Int, ?charactersToUse:String)",
+  "version": "1.1.0",
+  "url": "https://github.com/jasononeil/hxrandom",
+  "dependencies": {
+
+  }
+}
