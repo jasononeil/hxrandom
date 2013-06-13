@@ -1,4 +1,5 @@
 # Flash 9+
+-xml haxedoc.xml
 -main TestMain
 -lib munit
 -lib hamcrest
