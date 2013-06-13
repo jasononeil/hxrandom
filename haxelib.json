@@ -1,6 +1,7 @@
 {
   "name": "random",
   "license": "MIT",
+  "classPath": "src/",
   "tags": [],
   "description": "Shortcuts to generate random floats, ints, bools or pick random items from an array.",
   "contributors": ["jason"],

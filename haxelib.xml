@@ -1,5 +1,0 @@
-<project name="random" url="https://github.com/jasononeil/hxrandom" license="MIT">
-	<user name="jason"/>
-	<description>Shortcuts to generate random floats, ints, bools or pick random items from an array.</description>
-	<version name="1.1.0.0">Added support for Random.string(length:Int, ?charactersToUse:String)</version>
-</project>
