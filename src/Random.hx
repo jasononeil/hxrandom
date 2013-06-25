@@ -46,4 +46,10 @@ class Random
 	{
 		return (arr != null && arr.length > 0) ? arr[int(0, arr.length - 1)] : null;
 	}
+
+	/** Return a random constructor from an Enum.  Will return null if the enum has no constructors. Only works with enum constructors that take no parameters. */
+	public static inline function enumConstructor<T>(e:Enum<T>):Null<T>
+	{
+		return (e!=null) ? fromArray(Type.allEnums(e)) : null;
+	}
 }

@@ -233,4 +233,52 @@ class RandomTest
 		Assert.isNull(Random.fromArray(arr));
 	}
 
+	@Test
+	public function enumConstructor():Void
+	{
+		for (i in 0...1000)
+		{
+			var r = Random.enumConstructor(Color);
+			Assert.isTrue(Std.is(r, Color));
+			Assert.isTrue(
+				r == Red
+				|| r == Green
+				|| r == Blue
+			);
+		}
+	}
+
+	@Test 
+	public function enumConstructorNone():Void 
+	{
+		var arr = [];
+		Assert.isNull(Random.enumConstructor(EnumNone));
+	}
+
+	@Test 
+	public function enumConstructorWithParams():Void 
+	{
+		var arr = null;
+		Assert.isNull(Random.enumConstructor(EnumWithParams));
+	}
+
+	@Test 
+	public function enumConstructorNull():Void 
+	{
+		var arr = null;
+		Assert.isNull(Random.enumConstructor(null));
+	}
+}
+
+enum Color {
+	Red;
+	Blue;
+	Green;
+}
+
+enum EnumNone {}
+
+enum EnumWithParams {
+	Something( a:String );
+	Else( b:Int );
 }

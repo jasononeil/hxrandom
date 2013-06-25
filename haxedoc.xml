@@ -260,6 +260,7 @@
 	is less memory and CPU consuming, unless you really need indexed access.</haxe_doc>
 	</class>
 	<abstract path="Class" params="T" file="/usr/lib/haxe/std/Class.hx">
+		<this><d/></this>
 		<haxe_doc>An abstract type that represents a Class.
 	
 	See `Type` for the Haxe Reflection API.</haxe_doc>
@@ -442,6 +443,7 @@
 		</meta>
 	</class>
 	<abstract path="Enum" params="T" file="/usr/lib/haxe/std/Enum.hx">
+		<this><d/></this>
 		<haxe_doc>An abstract type that represents an Enum type.
 	
 	The corresponding enum instance type is `EnumValue`.
@@ -453,6 +455,7 @@
 		</meta>
 	</abstract>
 	<abstract path="EnumValue" params="" file="/usr/lib/haxe/std/EnumValue.hx">
+		<this><d/></this>
 		<haxe_doc>An abstract type that represents any enum value.
 	See `Type` for the Haxe Reflection API.</haxe_doc>
 		<meta><m n=":coreType"/></meta>
@@ -517,24 +520,28 @@
 	</class>
 	<abstract path="Map" params="K:V" file="/usr/lib/haxe/std/Map.hx">
 		<from>
-			<c path="haxe.ds.StringMap"><c path="fromStringMap.V"/></c>
-			<c path="haxe.ds.IntMap"><c path="fromIntMap.V"/></c>
-			<c path="haxe.ds.ObjectMap">
-				<c path="fromObjectMap.K"/>
-				<c path="fromObjectMap.V"/>
-			</c>
+			<icast field="fromStringMap"><c path="haxe.ds.StringMap"><c path="fromStringMap.V"/></c></icast>
+			<icast field="fromIntMap"><c path="haxe.ds.IntMap"><c path="fromIntMap.V"/></c></icast>
+			<icast field="fromObjectMap"><c path="haxe.ds.ObjectMap">
+	<c path="fromObjectMap.K"/>
+	<c path="fromObjectMap.V"/>
+</c></icast>
 		</from>
+		<this><c path="IMap">
+	<c path="Map.K"/>
+	<c path="Map.V"/>
+</c></this>
 		<to>
-			<c path="haxe.ds.StringMap"><c path="Map.V"/></c>
-			<c path="haxe.ds.IntMap"><c path="Map.V"/></c>
-			<c path="haxe.ds.EnumValueMap">
-				<c path="toEnumValueMapMap.K"/>
-				<c path="Map.V"/>
-			</c>
-			<c path="haxe.ds.ObjectMap">
-				<c path="toObjectMap.K"/>
-				<c path="Map.V"/>
-			</c>
+			<icast field="toStringMap"><c path="haxe.ds.StringMap"><c path="Map.V"/></c></icast>
+			<icast field="toIntMap"><c path="haxe.ds.IntMap"><c path="Map.V"/></c></icast>
+			<icast field="toEnumValueMapMap"><c path="haxe.ds.EnumValueMap">
+	<c path="toEnumValueMapMap.K"/>
+	<c path="Map.V"/>
+</c></icast>
+			<icast field="toObjectMap"><c path="haxe.ds.ObjectMap">
+	<c path="toObjectMap.K"/>
+	<c path="Map.V"/>
+</c></icast>
 		</to>
 		<haxe_doc><![CDATA[Map allows key to value mapping for arbitrary value types, and many key
 	types.
@@ -851,6 +858,13 @@
 			</f>
 			<haxe_doc>Return a random item from an array.  Will return null if the array is null or empty.</haxe_doc>
 		</fromArray>
+		<enumConstructor public="1" params="T" get="inline" set="null" line="51" static="1">
+			<f a="e">
+				<x path="Enum"><c path="enumConstructor.T"/></x>
+				<t path="Null"><c path="enumConstructor.T"/></t>
+			</f>
+			<haxe_doc>Return a random constructor from an Enum.  Will return null if the enum has no constructors. Only works with enum constructors that take no parameters.</haxe_doc>
+		</enumConstructor>
 		<haxe_doc>**
 * Copyright (c) 2013 Jason O'Neil
 * 
@@ -863,6 +877,22 @@
 **</haxe_doc>
 	</class>
 	<class path="RandomTest" params="" file="test/RandomTest.hx">
+		<enumConstructorNull public="1" set="method" line="266">
+			<f a=""><x path="Void"/></f>
+			<meta><m n="Test"/></meta>
+		</enumConstructorNull>
+		<enumConstructorWithParams public="1" set="method" line="259">
+			<f a=""><x path="Void"/></f>
+			<meta><m n="Test"/></meta>
+		</enumConstructorWithParams>
+		<enumConstructorNone public="1" set="method" line="252">
+			<f a=""><x path="Void"/></f>
+			<meta><m n="Test"/></meta>
+		</enumConstructorNone>
+		<enumConstructor public="1" set="method" line="237">
+			<f a=""><x path="Void"/></f>
+			<meta><m n="Test"/></meta>
+		</enumConstructor>
 		<arrayNull public="1" set="method" line="230">
 			<f a=""><x path="Void"/></f>
 			<meta><m n="Test"/></meta>
@@ -948,6 +978,16 @@
 * This is an example test class can be used as a template for writing normal and async tests 
 * Refer to munit command line tool for more information (haxelib run munit)</haxe_doc>
 	</class>
+	<enum path="Color" params="" file="test/RandomTest.hx" module="RandomTest">
+		<Red/>
+		<Blue/>
+		<Green/>
+	</enum>
+	<enum path="EnumNone" params="" file="test/RandomTest.hx" module="RandomTest"/>
+	<enum path="EnumWithParams" params="" file="test/RandomTest.hx" module="RandomTest">
+		<Something a="a"><c path="String"/></Something>
+		<Else a="b"><x path="Int"/></Else>
+	</enum>
 	<class path="Reflect" params="" file="/usr/lib/haxe/std/flash/_std/Reflect.hx">
 		<hasField public="1" set="method" line="24" static="1">
 			<f a="o:field">
@@ -1048,7 +1088,7 @@
 			</f>
 			<haxe_doc>Tells if a value v is of the type t. Returns false if v or t are null.</haxe_doc>
 		</is>
-		<string public="1" set="method" line="30" static="1">
+		<string public="1" set="method" line="34" static="1">
 			<f a="s">
 				<d/>
 				<c path="String"/>
@@ -1070,7 +1110,7 @@
 
 		If s is null, "null" is returned.</haxe_doc>
 		</string>
-		<parseInt public="1" set="method" line="38" static="1">
+		<parseInt public="1" set="method" line="42" static="1">
 			<f a="x">
 				<c path="String"/>
 				<t path="Null"><x path="Int"/></t>
@@ -1101,10 +1141,12 @@
 		</meta>
 	</class>
 	<abstract path="Void" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<this><d/></this>
 		<haxe_doc>The standard Void type. Only `null` values can be of the type `Void`.</haxe_doc>
 		<meta><m n=":coreType"/></meta>
 	</abstract>
 	<abstract path="Float" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<this><d/></this>
 		<haxe_doc><![CDATA[The standard Float type, this is a double-precision IEEE 64bit float.
 	
 	On static targets, null cannot be assigned to Float. If this is necessary,
@@ -1117,7 +1159,8 @@
 		</meta>
 	</abstract>
 	<abstract path="Int" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
-		<to><x path="Float"/></to>
+		<this><d/></this>
+		<to><icast><x path="Float"/></icast></to>
 		<haxe_doc><![CDATA[The standard Int type. Its precision depends on the platform.
 	
 	On static targets, null cannot be assigned to Int. If this is necessary,
@@ -1130,8 +1173,9 @@
 		</meta>
 	</abstract>
 	<abstract path="UInt" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
-		<from><x path="Int"/></from>
-		<to><x path="Int"/></to>
+		<from><icast><x path="Int"/></icast></from>
+		<this><d/></this>
+		<to><icast><x path="Int"/></icast></to>
 		<haxe_doc>The unsigned Int type is only defined for Flash9. It's currently
 	handled the same as a normal Int.</haxe_doc>
 		<meta>
@@ -1148,6 +1192,7 @@
 	can't.</haxe_doc>
 	</typedef>
 	<abstract path="Bool" params="" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<this><d/></this>
 		<haxe_doc><![CDATA[The standard Boolean type, which can either be true or false.
 	
 	On static targets, null cannot be assigned to Bool. If this is necessary,
@@ -1160,6 +1205,7 @@
 		</meta>
 	</abstract>
 	<abstract path="Dynamic" params="T" file="/usr/lib/haxe/std/StdTypes.hx" module="StdTypes">
+		<this><d/></this>
 		<haxe_doc>Dynamic is a special type which is compatible with all other types.
 	
 	Use of Dynamic should be minimized as it prevents several compiler
@@ -1511,15 +1557,15 @@
  * Refer to munit command line tool for more information (haxelib run munit)</haxe_doc>
 	</class>
 	<enum path="ValueType" params="" file="/usr/lib/haxe/std/flash/_std/Type.hx" module="Type">
-		<TUnknown/>
-		<TObject/>
 		<TNull/>
 		<TInt/>
-		<TFunction/>
 		<TFloat/>
-		<TEnum a="e"><x path="Enum"><d/></x></TEnum>
-		<TClass a="c"><x path="Class"><d/></x></TClass>
 		<TBool/>
+		<TObject/>
+		<TFunction/>
+		<TClass a="c"><x path="Class"><d/></x></TClass>
+		<TEnum a="e"><x path="Enum"><d/></x></TEnum>
+		<TUnknown/>
 	</enum>
 	<class path="Type" params="" file="/usr/lib/haxe/std/flash/_std/Type.hx">
 		<getClass public="1" params="T" set="method" line="36" static="1">
@@ -1622,6 +1668,23 @@
 		
 		If `a` or `b` are null, the result is unspecified.</haxe_doc>
 		</enumEq>
+		<allEnums public="1" params="T" set="method" line="276" static="1">
+			<f a="e">
+				<x path="Enum"><c path="allEnums.T"/></x>
+				<c path="Array"><c path="allEnums.T"/></c>
+			</f>
+			<haxe_doc>Returns a list of all constructors of enum `e` that require no
+		arguments.
+		
+		This may return the empty Array [] if all constructors of `e` require
+		arguments.
+		
+		Otherwise an instance of `e` constructed through each of its non-
+		argument constructors is returned, in the order of the constructor
+		declaration.
+		
+		If `e` is null, the result is unspecified.</haxe_doc>
+		</allEnums>
 		<haxe_doc>The haxe Reflection API allows retrieval of type information at runtime.
 	
 	This class complements the more lightweight Reflect class, with a focus on
@@ -2063,8 +2126,8 @@
 		<new public="1" set="method"><f a=""><x path="Void"/></f></new>
 	</class>
 	<enum path="flash.display.ActionScriptVersion" params="" file="/usr/lib/haxe/std/flash/display/ActionScriptVersion.hx">
-		<ACTIONSCRIPT3/>
 		<ACTIONSCRIPT2/>
+		<ACTIONSCRIPT3/>
 		<meta><m n=":fakeEnum"><e>UInt</e></m></meta>
 	</enum>
 	<class path="flash.display.BitmapData" params="" file="/usr/lib/haxe/std/flash/display/BitmapData.hx" extern="1">
@@ -2257,42 +2320,42 @@
 </f></new>
 	</class>
 	<enum path="flash.display.BlendMode" params="" file="/usr/lib/haxe/std/flash/display/BlendMode.hx">
-		<SUBTRACT/>
-		<SHADER/>
-		<SCREEN/>
-		<OVERLAY/>
-		<NORMAL/>
-		<MULTIPLY/>
-		<LIGHTEN/>
-		<LAYER/>
-		<INVERT/>
-		<HARDLIGHT/>
-		<ERASE/>
-		<DIFFERENCE/>
-		<DARKEN/>
-		<ALPHA/>
 		<ADD/>
+		<ALPHA/>
+		<DARKEN/>
+		<DIFFERENCE/>
+		<ERASE/>
+		<HARDLIGHT/>
+		<INVERT/>
+		<LAYER/>
+		<LIGHTEN/>
+		<MULTIPLY/>
+		<NORMAL/>
+		<OVERLAY/>
+		<SCREEN/>
+		<SHADER/>
+		<SUBTRACT/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.CapsStyle" params="" file="/usr/lib/haxe/std/flash/display/CapsStyle.hx">
-		<SQUARE/>
-		<ROUND/>
 		<NONE/>
+		<ROUND/>
+		<SQUARE/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.ColorCorrection" params="" file="/usr/lib/haxe/std/flash/display/ColorCorrection.hx">
-		<ON/>
-		<OFF/>
 		<DEFAULT/>
+		<OFF/>
+		<ON/>
 		<meta>
 			<m n=":fakeEnum"><e>String</e></m>
 			<m n=":require"><e>flash10_1</e></m>
 		</meta>
 	</enum>
 	<enum path="flash.display.ColorCorrectionSupport" params="" file="/usr/lib/haxe/std/flash/display/ColorCorrectionSupport.hx">
-		<UNSUPPORTED/>
-		<DEFAULT_ON/>
 		<DEFAULT_OFF/>
+		<DEFAULT_ON/>
+		<UNSUPPORTED/>
 		<meta>
 			<m n=":fakeEnum"><e>String</e></m>
 			<m n=":require"><e>flash10_1</e></m>
@@ -2310,8 +2373,8 @@
 		<meta><m n=":final"/></meta>
 	</class>
 	<enum path="flash.display.GradientType" params="" file="/usr/lib/haxe/std/flash/display/GradientType.hx">
-		<RADIAL/>
 		<LINEAR/>
+		<RADIAL/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.display.Graphics" params="" file="/usr/lib/haxe/std/flash/display/Graphics.hx" extern="1">
@@ -2423,27 +2486,27 @@
 		<meta><m n=":final"/></meta>
 	</class>
 	<enum path="flash.display.GraphicsPathWinding" params="" file="/usr/lib/haxe/std/flash/display/GraphicsPathWinding.hx">
-		<NON_ZERO/>
 		<EVEN_ODD/>
+		<NON_ZERO/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.display.IGraphicsData" params="" file="/usr/lib/haxe/std/flash/display/IGraphicsData.hx" extern="1" interface="1"/>
 	<enum path="flash.display.InterpolationMethod" params="" file="/usr/lib/haxe/std/flash/display/InterpolationMethod.hx">
-		<RGB/>
 		<LINEAR_RGB/>
+		<RGB/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.JointStyle" params="" file="/usr/lib/haxe/std/flash/display/JointStyle.hx">
-		<ROUND/>
-		<MITER/>
 		<BEVEL/>
+		<MITER/>
+		<ROUND/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.LineScaleMode" params="" file="/usr/lib/haxe/std/flash/display/LineScaleMode.hx">
-		<VERTICAL/>
-		<NORMAL/>
-		<NONE/>
 		<HORIZONTAL/>
+		<NONE/>
+		<NORMAL/>
+		<VERTICAL/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.display.Loader" params="" file="/usr/lib/haxe/std/flash/display/Loader.hx" extern="1">
@@ -2525,14 +2588,14 @@
 		<haxe_dynamic><d/></haxe_dynamic>
 	</class>
 	<enum path="flash.display.ShaderPrecision" params="" file="/usr/lib/haxe/std/flash/display/ShaderPrecision.hx">
-		<FULL/>
 		<FAST/>
+		<FULL/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.SpreadMethod" params="" file="/usr/lib/haxe/std/flash/display/SpreadMethod.hx">
-		<REPEAT/>
-		<REFLECT/>
 		<PAD/>
+		<REFLECT/>
+		<REPEAT/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.display.Stage" params="" file="/usr/lib/haxe/std/flash/display/Stage.hx" extern="1">
@@ -2567,44 +2630,44 @@
 		<meta><m n=":require"><e>flash11</e></m></meta>
 	</class>
 	<enum path="flash.display.StageAlign" params="" file="/usr/lib/haxe/std/flash/display/StageAlign.hx">
-		<TOP_RIGHT/>
-		<TOP_LEFT/>
-		<TOP/>
-		<RIGHT/>
-		<LEFT/>
-		<BOTTOM_RIGHT/>
-		<BOTTOM_LEFT/>
 		<BOTTOM/>
+		<BOTTOM_LEFT/>
+		<BOTTOM_RIGHT/>
+		<LEFT/>
+		<RIGHT/>
+		<TOP/>
+		<TOP_LEFT/>
+		<TOP_RIGHT/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.StageDisplayState" params="" file="/usr/lib/haxe/std/flash/display/StageDisplayState.hx">
-		<NORMAL/>
-		<FULL_SCREEN_INTERACTIVE/>
 		<FULL_SCREEN/>
+		<FULL_SCREEN_INTERACTIVE/>
+		<NORMAL/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.StageQuality" params="" file="/usr/lib/haxe/std/flash/display/StageQuality.hx">
-		<MEDIUM/>
-		<LOW/>
-		<HIGH_8X8_LINEAR/>
-		<HIGH_8X8/>
-		<HIGH_16X16_LINEAR/>
-		<HIGH_16X16/>
-		<HIGH/>
 		<BEST/>
+		<HIGH/>
+		<HIGH_16X16/>
+		<HIGH_16X16_LINEAR/>
+		<HIGH_8X8/>
+		<HIGH_8X8_LINEAR/>
+		<LOW/>
+		<MEDIUM/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.StageScaleMode" params="" file="/usr/lib/haxe/std/flash/display/StageScaleMode.hx">
-		<SHOW_ALL/>
-		<NO_SCALE/>
-		<NO_BORDER/>
 		<EXACT_FIT/>
+		<NO_BORDER/>
+		<NO_SCALE/>
+		<SHOW_ALL/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display.TriangleCulling" params="" file="/usr/lib/haxe/std/flash/display/TriangleCulling.hx">
-		<POSITIVE/>
-		<NONE/>
 		<NEGATIVE/>
+		<NONE/>
+		<POSITIVE/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.display3D.Context3D" params="" file="/usr/lib/haxe/std/flash/display3D/Context3D.hx" extern="1">
@@ -2749,87 +2812,87 @@
 		<meta><m n=":final"/></meta>
 	</class>
 	<enum path="flash.display3D.Context3DBlendFactor" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DBlendFactor.hx">
-		<ZERO/>
-		<SOURCE_COLOR/>
-		<SOURCE_ALPHA/>
-		<ONE_MINUS_SOURCE_COLOR/>
-		<ONE_MINUS_SOURCE_ALPHA/>
-		<ONE_MINUS_DESTINATION_COLOR/>
-		<ONE_MINUS_DESTINATION_ALPHA/>
-		<ONE/>
-		<DESTINATION_COLOR/>
 		<DESTINATION_ALPHA/>
+		<DESTINATION_COLOR/>
+		<ONE/>
+		<ONE_MINUS_DESTINATION_ALPHA/>
+		<ONE_MINUS_DESTINATION_COLOR/>
+		<ONE_MINUS_SOURCE_ALPHA/>
+		<ONE_MINUS_SOURCE_COLOR/>
+		<SOURCE_ALPHA/>
+		<SOURCE_COLOR/>
+		<ZERO/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DCompareMode" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DCompareMode.hx">
-		<NOT_EQUAL/>
-		<NEVER/>
-		<LESS_EQUAL/>
-		<LESS/>
-		<GREATER_EQUAL/>
-		<GREATER/>
-		<EQUAL/>
 		<ALWAYS/>
+		<EQUAL/>
+		<GREATER/>
+		<GREATER_EQUAL/>
+		<LESS/>
+		<LESS_EQUAL/>
+		<NEVER/>
+		<NOT_EQUAL/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DMipFilter" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DMipFilter.hx">
-		<MIPNONE/>
-		<MIPNEAREST/>
 		<MIPLINEAR/>
+		<MIPNEAREST/>
+		<MIPNONE/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DProfile" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DProfile.hx">
-		<BASELINE_CONSTRAINED/>
 		<BASELINE/>
+		<BASELINE_CONSTRAINED/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DProgramType" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DProgramType.hx">
-		<VERTEX/>
 		<FRAGMENT/>
+		<VERTEX/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DStencilAction" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DStencilAction.hx">
-		<ZERO/>
-		<SET/>
-		<KEEP/>
-		<INVERT/>
-		<INCREMENT_WRAP/>
-		<INCREMENT_SATURATE/>
-		<DECREMENT_WRAP/>
 		<DECREMENT_SATURATE/>
+		<DECREMENT_WRAP/>
+		<INCREMENT_SATURATE/>
+		<INCREMENT_WRAP/>
+		<INVERT/>
+		<KEEP/>
+		<SET/>
+		<ZERO/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DTextureFilter" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DTextureFilter.hx">
-		<NEAREST/>
 		<LINEAR/>
+		<NEAREST/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DTextureFormat" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DTextureFormat.hx">
-		<COMPRESSED_ALPHA/>
-		<COMPRESSED/>
-		<BGR_PACKED/>
-		<BGRA_PACKED/>
 		<BGRA/>
+		<BGRA_PACKED/>
+		<BGR_PACKED/>
+		<COMPRESSED/>
+		<COMPRESSED_ALPHA/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DTriangleFace" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DTriangleFace.hx">
-		<NONE/>
-		<FRONT_AND_BACK/>
-		<FRONT/>
 		<BACK/>
+		<FRONT/>
+		<FRONT_AND_BACK/>
+		<NONE/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DVertexBufferFormat" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DVertexBufferFormat.hx">
-		<FLOAT_4/>
-		<FLOAT_3/>
-		<FLOAT_2/>
-		<FLOAT_1/>
 		<BYTES_4/>
+		<FLOAT_1/>
+		<FLOAT_2/>
+		<FLOAT_3/>
+		<FLOAT_4/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.display3D.Context3DWrapMode" params="" file="/usr/lib/haxe/std/flash/display3D/Context3DWrapMode.hx">
-		<REPEAT/>
 		<CLAMP/>
+		<REPEAT/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.display3D.IndexBuffer3D" params="" file="/usr/lib/haxe/std/flash/display3D/IndexBuffer3D.hx" extern="1">
@@ -3034,9 +3097,9 @@
 </f></new>
 	</class>
 	<enum path="flash.events.EventPhase" params="" file="/usr/lib/haxe/std/flash/events/EventPhase.hx">
-		<CAPTURING_PHASE/>
-		<BUBBLING_PHASE/>
 		<AT_TARGET/>
+		<BUBBLING_PHASE/>
+		<CAPTURING_PHASE/>
 		<meta><m n=":fakeEnum"><e>UInt</e></m></meta>
 	</enum>
 	<class path="flash.events.HTTPStatusEvent" params="" file="/usr/lib/haxe/std/flash/events/HTTPStatusEvent.hx" extern="1">
@@ -3288,9 +3351,9 @@
 		<meta><m n=":require"><e>flash10</e></m></meta>
 	</class>
 	<enum path="flash.geom.Orientation3D" params="" file="/usr/lib/haxe/std/flash/geom/Orientation3D.hx">
-		<QUATERNION/>
-		<EULER_ANGLES/>
 		<AXIS_ANGLE/>
+		<EULER_ANGLES/>
+		<QUATERNION/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.geom.PerspectiveProjection" params="" file="/usr/lib/haxe/std/flash/geom/PerspectiveProjection.hx" extern="1">
@@ -3761,11 +3824,11 @@
 		<meta><m n=":final"/></meta>
 	</class>
 	<enum path="flash.media.MicrophoneEnhancedMode" params="" file="/usr/lib/haxe/std/flash/media/MicrophoneEnhancedMode.hx">
-		<SPEAKER_MUTE/>
-		<OFF/>
-		<HEADSET/>
-		<HALF_DUPLEX/>
 		<FULL_DUPLEX/>
+		<HALF_DUPLEX/>
+		<HEADSET/>
+		<OFF/>
+		<SPEAKER_MUTE/>
 		<meta>
 			<m n=":fakeEnum"><e>String</e></m>
 			<m n=":require"><e>flash10_2</e></m>
@@ -3784,10 +3847,10 @@
 		</meta>
 	</class>
 	<enum path="flash.media.SoundCodec" params="" file="/usr/lib/haxe/std/flash/media/SoundCodec.hx">
-		<SPEEX/>
-		<PCMU/>
-		<PCMA/>
 		<NELLYMOSER/>
+		<PCMA/>
+		<PCMU/>
+		<SPEEX/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.media.SoundTransform" params="" file="/usr/lib/haxe/std/flash/media/SoundTransform.hx" extern="1">
@@ -4092,9 +4155,9 @@
 </f></new>
 	</class>
 	<enum path="flash.net.URLLoaderDataFormat" params="" file="/usr/lib/haxe/std/flash/net/URLLoaderDataFormat.hx">
-		<VARIABLES/>
-		<TEXT/>
 		<BINARY/>
+		<TEXT/>
+		<VARIABLES/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.net.URLRequest" params="" file="/usr/lib/haxe/std/flash/net/URLRequest.hx" extern="1">
@@ -4180,8 +4243,8 @@
 		<version public="1" set="null" static="1"><c path="String"/></version>
 	</class>
 	<enum path="flash.system.ImageDecodingPolicy" params="" file="/usr/lib/haxe/std/flash/system/ImageDecodingPolicy.hx">
-		<ON_LOAD/>
 		<ON_DEMAND/>
+		<ON_LOAD/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.system.LoaderContext" params="" file="/usr/lib/haxe/std/flash/system/LoaderContext.hx" extern="1">
@@ -4197,20 +4260,20 @@
 	</class>
 	<class path="flash.system.SecurityDomain" params="" file="/usr/lib/haxe/std/flash/system/SecurityDomain.hx" extern="1"><currentDomain public="1" set="null" static="1"><c path="flash.system.SecurityDomain"/></currentDomain></class>
 	<enum path="flash.system.TouchscreenType" params="" file="/usr/lib/haxe/std/flash/system/TouchscreenType.hx">
-		<STYLUS/>
-		<NONE/>
 		<FINGER/>
+		<NONE/>
+		<STYLUS/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.text.AntiAliasType" params="" file="/usr/lib/haxe/std/flash/text/AntiAliasType.hx">
-		<NORMAL/>
 		<ADVANCED/>
+		<NORMAL/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.text.GridFitType" params="" file="/usr/lib/haxe/std/flash/text/GridFitType.hx">
-		<SUBPIXEL/>
-		<PIXEL/>
 		<NONE/>
+		<PIXEL/>
+		<SUBPIXEL/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.text.StyleSheet" params="" file="/usr/lib/haxe/std/flash/text/StyleSheet.hx" extern="1">
@@ -4380,15 +4443,15 @@
 		<new public="1" set="method"><f a=""><x path="Void"/></f></new>
 	</class>
 	<enum path="flash.text.TextFieldAutoSize" params="" file="/usr/lib/haxe/std/flash/text/TextFieldAutoSize.hx">
-		<RIGHT/>
-		<NONE/>
-		<LEFT/>
 		<CENTER/>
+		<LEFT/>
+		<NONE/>
+		<RIGHT/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.text.TextFieldType" params="" file="/usr/lib/haxe/std/flash/text/TextFieldType.hx">
-		<INPUT/>
 		<DYNAMIC/>
+		<INPUT/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.text.TextFormat" params="" file="/usr/lib/haxe/std/flash/text/TextFormat.hx" extern="1">
@@ -4429,22 +4492,22 @@
 </f></new>
 	</class>
 	<enum path="flash.text.TextFormatAlign" params="" file="/usr/lib/haxe/std/flash/text/TextFormatAlign.hx">
-		<START/>
-		<RIGHT/>
-		<LEFT/>
-		<JUSTIFY/>
-		<END/>
 		<CENTER/>
+		<END/>
+		<JUSTIFY/>
+		<LEFT/>
+		<RIGHT/>
+		<START/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.text.TextFormatDisplay" params="" file="/usr/lib/haxe/std/flash/text/TextFormatDisplay.hx">
-		<INLINE/>
 		<BLOCK/>
+		<INLINE/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<enum path="flash.text.TextInteractionMode" params="" file="/usr/lib/haxe/std/flash/text/TextInteractionMode.hx">
-		<SELECTION/>
 		<NORMAL/>
+		<SELECTION/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<class path="flash.text.TextLineMetrics" params="" file="/usr/lib/haxe/std/flash/text/TextLineMetrics.hx" extern="1">
@@ -4728,9 +4791,9 @@
 		<new public="1" set="method"><f a=""><x path="Void"/></f></new>
 	</class>
 	<enum path="flash.utils.CompressionAlgorithm" params="" file="/usr/lib/haxe/std/flash/utils/CompressionAlgorithm.hx">
-		<ZLIB/>
-		<LZMA/>
 		<DEFLATE/>
+		<LZMA/>
+		<ZLIB/>
 		<meta>
 			<m n=":fakeEnum"><e>String</e></m>
 			<m n=":require"><e>flash11</e></m>
@@ -4744,8 +4807,8 @@
 		<haxe_dynamic><d/></haxe_dynamic>
 	</class>
 	<enum path="flash.utils.Endian" params="" file="/usr/lib/haxe/std/flash/utils/Endian.hx">
-		<LITTLE_ENDIAN/>
 		<BIG_ENDIAN/>
+		<LITTLE_ENDIAN/>
 		<meta><m n=":fakeEnum"><e>String</e></m></meta>
 	</enum>
 	<typedef path="flash.utils.Function" params="" file="/usr/lib/haxe/std/flash/utils/Function.hx"><d/></typedef>
@@ -5010,18 +5073,18 @@
 		<meta><m n=":final"/></meta>
 	</class>
 	<enum path="haxe.StackItem" params="" file="/usr/lib/haxe/std/haxe/CallStack.hx" module="haxe.CallStack">
+		<CFunction/>
 		<Module a="m"><c path="String"/></Module>
-		<Method a="classname:method">
-			<c path="String"/>
-			<c path="String"/>
-		</Method>
-		<Lambda a="v"><x path="Int"/></Lambda>
 		<FilePos a="s:file:line">
 			<t path="Null"><e path="haxe.StackItem"/></t>
 			<c path="String"/>
 			<x path="Int"/>
 		</FilePos>
-		<CFunction/>
+		<Method a="classname:method">
+			<c path="String"/>
+			<c path="String"/>
+		</Method>
+		<Lambda a="v"><x path="Int"/></Lambda>
 		<haxe_doc>Elements return by `CallStack` methods.</haxe_doc>
 	</enum>
 	<class path="haxe.CallStack" params="" file="/usr/lib/haxe/std/haxe/CallStack.hx">
@@ -5223,7 +5286,13 @@
 	This can be used to track positions of calls in e.g. a unit testing
 	framework.</haxe_doc>
 	</typedef>
-	<abstract path="haxe.ds.HashMap" params="K:V" file="/usr/lib/haxe/std/haxe/ds/HashMap.hx"><impl><class path="haxe.ds._HashMap.HashMap_Impl_" params="" file="/usr/lib/haxe/std/haxe/ds/HashMap.hx" private="1" module="haxe.ds.HashMap"><meta><m n=":keep"/></meta></class></impl></abstract>
+	<abstract path="haxe.ds.HashMap" params="K:V" file="/usr/lib/haxe/std/haxe/ds/HashMap.hx">
+		<this><a>
+	<values><c path="haxe.ds.IntMap"><c path="haxe.ds.HashMap.V"/></c></values>
+	<keys><c path="haxe.ds.IntMap"><c path="haxe.ds.HashMap.K"/></c></keys>
+</a></this>
+		<impl><class path="haxe.ds._HashMap.HashMap_Impl_" params="" file="/usr/lib/haxe/std/haxe/ds/HashMap.hx" private="1" module="haxe.ds.HashMap"><meta><m n=":keep"/></meta></class></impl>
+	</abstract>
 	<class path="haxe.ds.StringMap" params="T" file="/usr/lib/haxe/std/flash/_std/haxe/ds/StringMap.hx">
 		<implements path="IMap">
 			<c path="String"/>
@@ -5842,9 +5911,9 @@
 	<enum path="massive.munit.TestResultType" params="" file="/usr/lib/haxe/lib/munit/2,0,2/massive/munit/TestResult.hx" module="massive.munit.TestResult">
 		<UNKNOWN/>
 		<PASS/>
-		<IGNORE/>
 		<FAIL/>
 		<ERROR/>
+		<IGNORE/>
 	</enum>
 	<class path="massive.munit.async.IAsyncDelegateObserver" params="" file="/usr/lib/haxe/lib/munit/2,0,2/massive/munit/async/IAsyncDelegateObserver.hx" interface="1">
 		<asyncDelegateCreatedHandler public="1" set="method">
