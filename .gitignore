@@ -2,6 +2,7 @@
 /build
 /report
 /package
+*.zip
 
 # Editor files
 *.sublime-*
