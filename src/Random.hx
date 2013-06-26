@@ -41,10 +41,22 @@ class Random
 		return str;
 	}
 
+	/** Return a random date & time from within a range.  The behaviour is unspecified if either `earliest` or `latest` is null.  Earliest and Latest are inclusive */
+	public static inline function date(earliest:Date, latest:Date):Date
+	{
+		return Date.fromTime( float(earliest.getTime(), latest.getTime()) );
+	}
+
 	/** Return a random item from an array.  Will return null if the array is null or empty. */
 	public static inline function fromArray<T>(arr:Array<T>):Null<T>
 	{
 		return (arr != null && arr.length > 0) ? arr[int(0, arr.length - 1)] : null;
+	}
+
+	/** Return a random item from an iterable.  Will return null if the iterable is null or empty. */
+	public static inline function fromIterable<T>(it:Iterable<T>):Null<T>
+	{
+		return (arr != null) ? fromArray(Lambda.array(it)) : null;
 	}
 
 	/** Return a random constructor from an Enum.  Will return null if the enum has no constructors. Only works with enum constructors that take no parameters. */

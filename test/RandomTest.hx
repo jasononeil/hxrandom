@@ -180,6 +180,22 @@ class RandomTest
 	}
 
 	@Test
+	public function date():Void
+	{
+		var start = new Date(1987,9,16,0,0,0);
+		var startTime = start.getTime();
+		var end = new Date(1987,9,23,0,0,0);
+		var endTime = end.getTime();
+		for (i in 0...1000)
+		{
+			var r = Random.date(start,end);
+			Assert.isTrue(Std.is(r, Date));
+			Assert.isTrue(r.getTime() >= startTime);
+			Assert.isTrue(r.getTime() <= endTime);
+		}
+	}
+
+	@Test
 	public function arrayOfStrings():Void
 	{
 		var days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
