@@ -3,6 +3,8 @@ Random (Haxe Library)
 
 This *extremely* simple library provides simple helpers to generate random numbers in Haxe.
 
+**Note**: this just uses Haxe's build in Math.random() method, it does no seeding or custom Random Number Generation.  If you want something more random than `Math.random`, this is not the library you're looking for.
+
 Install
 -------
 
@@ -27,23 +29,29 @@ class Main
 		Random.bool(); // True or false
 		Random.string(5); // A 5 character string using letters A-Z, a-z and 0-9
 		Random.string(10, "aeiou"); // A 10 character string using only vowels
+		Random.date( Date.now, nextWeek ); // Generate a random date / time between now and next week
 		Random.fromArray(['dog','cat','mouse']); // "dog", "cat" or "mouse"
+		Random.enumConstructor( Color ); // The constructors of Color, eg: Red, Blue, Green
 	}
 }
 ```
 
 The methods it provides:
 
+ * `Random.bool()`  
+   Will return a random `true` or `false` boolean value.
  * `Random.int(from, to)`  
    Will generate a random integer between `from` and `to`, inclusive.
  * `Random.float(from, to)`  
    Will generate a random float between `from` and `to`, inclusive.
- * `Random.bool()`  
-   Will return a random `true` or `false` boolean value.
  * `Random.string(length:Int, ?charactersToUse:String)`  
    Will return a random string using of a certain length, using characters from "charactersToUse" or else A-Za-z0-9
+ * `Random.date(earliest:Date, latest:Date)`  
+   Will generate a random Date object (date & time) between `earliest` and `latest`, inclusive.
  * `Random.fromArray(arr)`  
    Will return a random item from the set array, or Null if the array is empty / null.
+ * `Random.enumConstructor(enum)`  
+   Will return a random constructor from an enum, or Null if the enum has no constructors.  Constructors that require parameters will be ignored.
 
 This uses Haxe's Math.random(), so don't expect any fancy algorithms.  It'll probably just use
 the platform default.  It also uses 'inline' on each of it's methods, to try and keep the 
