@@ -32,6 +32,7 @@ class Main
 		Random.date( Date.now, nextWeek ); // Generate a random date / time between now and next week
 		Random.fromArray(['dog','cat','mouse']); // "dog", "cat" or "mouse"
 		Random.enumConstructor( Color ); // The constructors of Color, eg: Red, Blue, Green
+		Random.shuffle([1,2,3,4,5]); // Return the same array, but with the items shuffled
 	}
 }
 ```
@@ -52,11 +53,15 @@ The methods it provides:
    Will return a random item from the set array, or Null if the array is empty / null.
  * `Random.enumConstructor(enum)`  
    Will return a random constructor from an enum, or Null if the enum has no constructors.  Constructors that require parameters will be ignored.
+ * `Random.shuffle(arr)`  
+   Will shuffle the items in the current array.  This shuffles the current array, it does not return a new one.
 
-This uses Haxe's Math.random(), so don't expect any fancy algorithms.  It'll probably just use
+These use Haxe's Math.random(), so don't expect any fancy algorithms.  It'll probably just use
 the platform default.  It also uses 'inline' on each of it's methods, to try and keep the 
 performance hit to a minimum.  If you're really worried, write them by hand - this is just a simple
 helper library.
+
+The `shuffle()` method uses a variation of the [Fisher Yates Shuffle](http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) algorithm.
 
 Future
 ------
