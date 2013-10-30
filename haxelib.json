@@ -3,10 +3,10 @@
   "license": "MIT",
   "classPath": "src/",
   "tags": [],
-  "description": "Shortcuts to generate random floats, ints, bools, strings, dates, or to pick random items from an array or enum.",
+  "description": "Shortcuts to generate random floats, ints, bools, strings, dates, or to pick random items from an array or enum, or to shuffle an array.",
   "contributors": ["jason"],
-  "releasenote": "Add support for `Random.date( startDate, endDate );`",
-  "version": "1.3.0",
+  "releasenote": "Add support for `Random.shuffle( array );`",
+  "version": "1.4.0",
   "url": "https://github.com/jasononeil/hxrandom",
   "dependencies": {
 
