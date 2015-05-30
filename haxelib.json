@@ -7,8 +7,5 @@
   "contributors": ["jason"],
   "releasenote": "Add support for `Random.shuffle( array );`",
   "version": "1.4.0",
-  "url": "https://github.com/jasononeil/hxrandom",
-  "dependencies": {
-
-  }
+  "url": "https://github.com/jasononeil/hxrandom"
 }
