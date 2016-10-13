@@ -11,10 +11,12 @@
 
 class Random
 {
-	/** Return a random boolean value (true or false) */
-	public static inline function bool():Bool
+	/** 
+	 * Return a random boolean value (true or false) following a given probability (default: 0.5).
+	 **/
+	public static inline function bool(probability:Float = 0.5):Bool
 	{
-		return Math.random() < 0.5;
+		return Math.random() < probability;
 	}
 
 	/** Return a random integer between 'from' and 'to', inclusive. */

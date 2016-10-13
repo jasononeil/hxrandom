@@ -27,6 +27,7 @@ class Main
 		Random.int(1,3); // 1, 2, or 3
 		Random.float(0,5); // Any float between 0 and 5, inclusive
 		Random.bool(); // True or false
+        Random.bool(0.25); // True (with 25% of probability) or false
 		Random.string(5); // A 5 character string using letters A-Z, a-z and 0-9
 		Random.string(10, "aeiou"); // A 10 character string using only vowels
 		Random.date( Date.now, nextWeek ); // Generate a random date / time between now and next week
@@ -39,8 +40,8 @@ class Main
 
 The methods it provides:
 
- * `Random.bool()`  
-   Will return a random `true` or `false` boolean value.
+ * `Random.bool(?probability:Float)`  
+   Will return a random `true` or `false` boolean value. A optional probability can be set so that there's more or less chance to get `true`. Default probability is 0.5.
  * `Random.int(from, to)`  
    Will generate a random integer between `from` and `to`, inclusive.
  * `Random.float(from, to)`  
