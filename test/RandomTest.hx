@@ -144,6 +144,17 @@ class RandomTest
 			Assert.isTrue(r == true || r == false);
 		}
 	}
+	
+	@Test
+	public function bool_probability():Void
+	{
+		for (i in 0...1000)
+		{
+			var r = Random.bool(0.25);
+			Assert.isTrue(Std.is(r, Bool));
+			Assert.isTrue(r == true || r == false);
+		}
+	}
 
 	@Test
 	public function string():Void
